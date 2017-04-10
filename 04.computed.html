@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>VUE</title>
+  <script src='script/vue.js'></script>
+  <style>
+    div,
+    button,
+    input,
+    li,
+    span,
+    p, a {
+      display: block;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id='app1'>
+    <div>{{ message }}</div>
+  </div>
+
+  <script>
+    var data = {
+      message: 'hello china <h3>hello h3</h3> CHHHHHINA',
+    }
+    var app = new Vue({
+      el: '#app1',
+      data: data,
+      methods: {
+    }
+  });
+
+  </script>
+
+</body>
+
+</html>

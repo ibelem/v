@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VUE</title>
+<script src='script/vue.js'></script>
+<style>
+  div,
+  button,
+  input,
+  li,
+  span,
+  p {
+    display: block;
+    margin: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div id='app1'>
+  <ul>
+    <li v-for='tab in tabs'>
+      {{ tab.text }}
+    </li>
+  </ul>
+
+  <div>{{ message }}</div>
+  <button v-on:click='reverseMessage'>Message Reverse</button>
+</div>
+
+<script>
+  var data = {
+      tabs: [
+        { text: 'Bus' },
+        { text: 'Car' },
+        { text: 'Train2' }
+      ],
+      message: 'hello china'
+  }
+  var app = new Vue({
+    el: '#app1',
+    data: data,
+    created: function(){
+      console.log('this is ' + this.message)
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  });
+
+</script>
+
+</body>
+</html>

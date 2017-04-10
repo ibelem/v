@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>VUE</title>
+  <script src='script/vue.js'></script>
+  <style>
+    div,
+    button,
+    input,
+    li,
+    span,
+    p, a {
+      display: block;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id='app1'>
+    <div v-once>{{ message }}</div>
+    <button v-on:click='reverseMessage'>Message Reverse</button>
+    <button @click='reverseMessage'>Message Reverse @click</button>
+    <div v-html='rawHtml'></div>
+    <div v-bind:title='message'>hover your mouse to check div title</div>
+    <button v-bind:disabled='someDynamicCondition'>button</button>
+    <div v-bind:title='"message " + message'>hover your mouse to check div title</div>
+
+    <a v-bind:href='url' v-on:click='doredirection'>Link v-bind:href</a>
+    <a :href='url'>Link :href</a>
+
+    <form v-on:submit.prevent='OnSubmit'></form>
+    
+
+    <div>{{ message | capitalize | filterB | filterC }}</div>
+    <div v-bind:id='rawId | formatId'></div>
+  </div>
+
+  <script>
+    var data = {
+      message: 'hello china <h3>hello h3</h3> CHHHHHINA',
+      rawHtml: '<h2>hello h2</h2>',
+      url: 'http://anr.io',
+      rawId: '10009'
+    }
+    var app = new Vue({
+      el: '#app1',
+      data: data,
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('')
+        },
+        someDynamicCondition: function () {
+          return false;
+        },
+        doredirection: function(){
+          location.href = 'http://www.baidu.com'
+        }
+    }
+  });
+
+  </script>
+
+</body>
+
+</html>

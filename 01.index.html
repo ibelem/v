@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VUE</title>
+<script src='script/vue.js'></script>
+<style>
+  div,
+  button,
+  input,
+  li,
+  span,
+  p {
+    display: block;
+    margin: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div id='app1'>
+  <ul>
+    <li v-for='tab in tabs'>
+      {{ tab.text }}
+    </li>
+  </ul>
+  <div v-bind:title='messagetitle'>{{ message }}</div>
+  <div v-if='seen'>You can see me</div>
+  <button v-on:click='reverseMessage'>Message Reverse</button>
+  <input v-model='message'>
+</div>
+
+<div id='app2'>
+  <ol>
+    <todo-item v-for='item in groceryList' v-bind:todo='item' :key="item.id"></todo-item>
+  </ol>
+</div>
+
+<div id='app3'>
+  <app-nav v-for='item in navList' v-bind:nav='item' :key="item.id"></app-nav>
+  <!-- <app-view>
+    <app-sidebar></app-sidebar>
+    <app-content></app-content>
+  </app-view>
+  -->
+</div>
+
+<script>
+  Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{todo.text}}</li>'
+  })
+
+  var app2 = new Vue({
+    el: '#app2',
+    data: {
+      groceryList: [
+        { id: 1, text: '水果' },
+        { id: 2, text: '蔬菜' },
+        { id: 3,text: '鱼肉' }
+      ]
+    }
+  })
+
+    Vue.component('app-nav', {
+    props: ['nav'],
+    template: '<span>{{nav.href}}</span>'
+  })
+
+  var app3 = new Vue({
+    el: '#app3',
+    data: {
+      navList: [
+        { id: 1, text: '水果', href: 'www.shuiguo.com' },
+        { id:2, text: '蔬菜', href: 'www.shucai.com' },
+        { id:3, text: '鱼肉', href: 'www.yurou.com' }
+      ]
+    }
+  })
+
+  var app = new Vue({
+    el: '#app1',
+    data: {
+      tabs: [
+        { text: 'Bus' },
+        { text: 'Car' },
+        { text: 'Train2' }
+      ],
+      message: 'China',
+      messagetitle: 'United Kindom',
+      seen: true,
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  });
+
+</script>
+
+</body>
+</html>
