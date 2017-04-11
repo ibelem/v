@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>VUE</title>
+  <script src='script/vue.js'></script>
+  <style>
+    div,
+    button,
+    input,
+    li,
+    span,
+    p,
+    a {
+      display: block;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id='app1'>
+    <div v-bind:class='{active: isActive}'>{{message}}</div>
+    <div v-bind:class='classObject'>{{message}}</div>
+    <div v-bind:class='classObject2'>{{message}}</div>
+    <div v-bind:class='[activeClass, errorClass]'>{{message2}}</div>
+    <div v-bind:class='[isActive ? activeClass : '', errorClass]'>{{message2}}</div>
+  </div>
+
+  <script>
+    var data = {
+      message: 'Object syntax',
+      message2: 'Array syntax',
+      isActive: true,
+      classObject: {
+        hasError: true,
+        show: true,
+        wow: false
+      },
+      activeClass: 'active',
+      errorClass: 'danger'
+    }
+    var app = new Vue({
+      el: '#app1',
+      data: data,
+      computed: {
+        classObject2: function() {
+          return { active: this.isActive,
+          check: this.classObject.hasError,
+          test: this.classObject.wow }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

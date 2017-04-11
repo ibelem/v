@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>VUE</title>
+  <script src='script/vue.js'></script>
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <div id='app1'>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+  </div>
+
+  <div id='app2'>
+    <simple-counter2></simple-counter2>
+    <simple-counter2></simple-counter2>
+    <simple-counter2></simple-counter2>
+  </div>
+
+  <script>
+    var data = { counter: 0 }
+
+    Vue.component('simple-counter', {
+      template: '<button @click="counter += 1">{{ counter }}</button>',
+      data: function() {
+        return data;
+      }
+    })
+
+    Vue.component('simple-counter2', {
+      template: '<button @click="counter += 1">{{ counter }}</button>',
+      data: function() {
+        return { counter: 0 }
+      }
+    })
+
+    var app1 = new Vue({
+      el: '#app1'
+    })
+
+    var app2 = new Vue({
+      el: '#app2'
+    })
+  </script>
+
+</body>
+
+</html>
