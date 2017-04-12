@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>VUE</title>
+  <script src='script/vue.js'></script>
+  <script src='script/vue-resource.min.js'></script>
+  <style></style>
+</head>
+
+<body>
+  <div id='app1'>
+    <div>Your IP Address: {{ ip }}</div>
+    <button v-on:click='getIP'>Get IP Address</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app1',
+      data: {
+        ip: ''
+      },
+      //created: function () {
+      methods: {
+        getIP: function () {
+          this.$http.get('http://httpbin.org/ip').then(response => {
+            this.ip = response.body.origin;
+          }, response => {
+            this.ip = response;
+          })
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
